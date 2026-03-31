@@ -13,7 +13,6 @@
   --suc:#15803d;--such:#dcfce7;--warn:#b45309;--warnh:#fef3c7;
   --err:#b91c1c;--errh:#fee2e2;--blue:#1d4ed8;--blueh:#dbeafe;
   --pur:#7c3aed;--purh:#ede9fe;--teal:#0f766e;--tealh:#ccfbf1;
-  --org:#c2410c;--orgh:#ffedd5;--rose:#be185d;--roseh:#fce7f3;
   --sh1:0 1px 3px rgba(26,23,16,.07);--sh2:0 4px 14px rgba(26,23,16,.09);--sh3:0 12px 32px rgba(26,23,16,.13);
   --tr:180ms cubic-bezier(.16,1,.3,1);--r4:4px;--r6:6px;--r8:8px;--r12:12px;--rfull:9999px;
   --font:"Inter",system-ui,sans-serif
@@ -24,33 +23,58 @@
   --pri:#3b82f6;--prih:#60a5fa;--prihigh:#1e3a5f;
   --suc:#22c55e;--such:#052e16;--warn:#f59e0b;--warnh:#3a2e0a;
   --err:#f87171;--errh:#3b0f0f;--blue:#60a5fa;--blueh:#1e3a5f;
-  --pur:#a78bfa;--purh:#2e1a5e;--teal:#2dd4bf;--tealh:#042f2e;
-  --org:#fb923c;--orgh:#431407;--rose:#f472b6;--roseh:#500724;
+  --pur:#a78bfa;--purh:#2e1a5e;
   --sh1:0 1px 3px rgba(0,0,0,.3);--sh2:0 4px 14px rgba(0,0,0,.4);--sh3:0 12px 32px rgba(0,0,0,.5)
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);font-size:13px;color:var(--tx);background:var(--bg);min-height:100dvh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);font-size:13px;color:var(--tx);background:var(--bg);min-height:100dvh;-webkit-font-smoothing:antialiased}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 input,select,textarea{font:inherit;color:inherit}
+
+/* LOGIN SCREEN */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100dvh;padding:24px;background:linear-gradient(135deg,#1a4f7a 0%,#153f62 100%)}
+.login-box{background:var(--surf2);border-radius:var(--r12);box-shadow:var(--sh3);width:100%;max-width:400px;padding:36px 32px}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.login-logo-icon{width:42px;height:42px;flex-shrink:0}
+.login-title{font-size:16px;font-weight:800;line-height:1.2}
+.login-sub{font-size:11px;color:var(--txm);margin-top:2px}
+.login-h{font-size:20px;font-weight:800;margin-bottom:6px}
+.login-desc{font-size:12px;color:var(--txm);margin-bottom:24px}
+.lg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.lg label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;letter-spacing:.06em}
+.lgi{padding:10px 13px;border:1px solid var(--bor);border-radius:var(--r6);background:var(--soff);font-size:13px;width:100%;transition:border-color var(--tr),box-shadow var(--tr)}
+.lgi:focus{border-color:var(--pri);outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:var(--surf2)}
+.login-btn{width:100%;padding:11px;background:var(--pri);color:#fff;border:none;border-radius:var(--r6);font-size:13px;font-weight:700;margin-top:8px;transition:background var(--tr);display:flex;align-items:center;justify-content:center;gap:8px}
+.login-btn:hover{background:var(--prih)}
+.login-err{background:var(--errh);color:var(--err);border-radius:var(--r6);padding:9px 12px;font-size:12px;font-weight:600;margin-top:10px;display:none}
+.login-note{font-size:10px;color:var(--txf);text-align:center;margin-top:16px}
+
+/* APP (hidden until login) */
+.app{display:none;flex-direction:column;min-height:100dvh}
+.app.show{display:flex}
 
 /* TOPBAR */
 .topbar{position:sticky;top:0;z-index:100;background:var(--surf);border-bottom:1px solid var(--bor);display:flex;align-items:center;gap:14px;padding:9px 22px;box-shadow:var(--sh1)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tx)}
 .logo-icon{width:34px;height:34px;flex-shrink:0}
-.logo-name{font-size:14px;font-weight:800;line-height:1.15;letter-spacing:-.01em}
-.logo-sub{font-size:10px;color:var(--txm);font-weight:500;letter-spacing:.02em}
+.logo-name{font-size:14px;font-weight:800;line-height:1.15}
+.logo-sub{font-size:10px;color:var(--txm);font-weight:500}
 .tb-div{width:1px;height:24px;background:var(--bor)}
 .tb-chip{font-size:10px;color:var(--pri);font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--prihigh);padding:3px 8px;border-radius:var(--rfull)}
 .spacer{flex:1}
-.icon-btn{display:flex;align-items:center;gap:5px;padding:6px 9px;border-radius:var(--r6);color:var(--txm);transition:background var(--tr),color var(--tr)}
+.user-badge{display:flex;align-items:center;gap:7px;padding:5px 10px;background:var(--soff);border-radius:var(--rfull);font-size:11px;font-weight:700;color:var(--txm)}
+.user-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0}
+.icon-btn{display:flex;align-items:center;padding:6px 9px;border-radius:var(--r6);color:var(--txm);transition:background var(--tr),color var(--tr)}
 .icon-btn:hover{background:var(--soff);color:var(--tx)}
+.logout-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:var(--r6);font-size:11px;font-weight:700;color:var(--err);background:var(--errh);transition:background var(--tr)}
+.logout-btn:hover{background:var(--err);color:#fff}
 .btn-primary{background:var(--pri);color:#fff;padding:7px 15px;border-radius:var(--r6);font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;transition:background var(--tr)}
 .btn-primary:hover{background:var(--prih)}
 
-/* SYNC STATUS */
+/* SYNC */
 .sync-bar{display:flex;align-items:center;gap:8px;padding:5px 22px;font-size:10px;font-weight:700;border-bottom:1px solid var(--div);background:var(--soff)}
 .sync-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.sync-live .sync-dot{background:#22c55e;box-shadow:0 0 0 2px rgba(34,197,94,.25);animation:pulse 2s infinite}
+.sync-live .sync-dot{background:#22c55e;animation:pulse 2s infinite}
 .sync-connecting .sync-dot{background:var(--warn)}
 .sync-error .sync-dot{background:var(--err)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -69,7 +93,7 @@ input,select,textarea{font:inherit;color:inherit}
 .toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:10px 22px;background:var(--bg);border-bottom:1px solid var(--div);flex-shrink:0}
 .sw{position:relative;flex:1;min-width:150px;max-width:260px}
 .sw svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--txf);pointer-events:none}
-.si{width:100%;padding:7px 9px 7px 28px;border:1px solid var(--bor);border-radius:var(--r6);background:var(--surf2);font-size:12px;transition:border-color var(--tr),box-shadow var(--tr)}
+.si{width:100%;padding:7px 9px 7px 28px;border:1px solid var(--bor);border-radius:var(--r6);background:var(--surf2);font-size:12px;transition:border-color var(--tr)}
 .si:focus{border-color:var(--pri);outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
 .fsel{padding:7px 9px;border:1px solid var(--bor);border-radius:var(--r6);background:var(--surf2);font-size:12px;cursor:pointer}
 .fsel:focus{border-color:var(--pri);outline:none}
@@ -96,15 +120,13 @@ input,select,textarea{font:inherit;color:inherit}
 .abtn.d:hover{background:var(--errh);color:var(--err)}
 .abtn.w:hover{background:var(--such);color:var(--suc)}
 
-/* BADGE */
-.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:var(--rfull);font-size:9px;font-weight:800;line-height:1.5;white-space:nowrap;letter-spacing:.03em}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:var(--rfull);font-size:9px;font-weight:800;line-height:1.5;white-space:nowrap}
 .b-new{background:var(--blueh);color:var(--blue)}
 .b-follow{background:var(--warnh);color:var(--warn)}
 .b-visited{background:var(--purh);color:var(--pur)}
 .b-enrolled{background:var(--such);color:var(--suc)}
 .b-not{background:var(--soff2);color:var(--txm)}
-
-/* COURSE BADGES */
 .cb{display:inline-flex;padding:1px 6px;border-radius:var(--rfull);font-size:9px;font-weight:700;white-space:nowrap}
 .cb-upsc{background:#dbeafe;color:#1e40af}
 .cb-gpsc1{background:#e0f2fe;color:#075985}
@@ -116,17 +138,15 @@ input,select,textarea{font:inherit;color:inherit}
 /* MODAL */
 .mb{position:fixed;inset:0;background:rgba(0,0,0,.48);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;opacity:0;pointer-events:none;transition:opacity var(--tr)}
 .mb.open{opacity:1;pointer-events:all}
-.modal{background:var(--surf2);border-radius:var(--r12);box-shadow:var(--sh3);width:100%;max-width:580px;max-height:92dvh;overflow-y:auto;transform:translateY(16px);transition:transform var(--tr)}
+.modal{background:var(--surf2);border-radius:var(--r12);box-shadow:var(--sh3);width:100%;max-width:560px;max-height:92dvh;overflow-y:auto;transform:translateY(16px);transition:transform var(--tr)}
 .mb.open .modal{transform:translateY(0)}
 .mh{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--div)}
 .mt{font-size:15px;font-weight:800}
-.xbtn{display:flex;align-items:center;padding:5px;border-radius:var(--r6);color:var(--txm);transition:background var(--tr),color var(--tr)}
-.xbtn:hover{background:var(--soff);color:var(--tx)}
+.xbtn{display:flex;align-items:center;padding:5px;border-radius:var(--r6);color:var(--txm);transition:background var(--tr)}
+.xbtn:hover{background:var(--soff)}
 .mbody{padding:18px 22px;display:flex;flex-direction:column;gap:13px}
 .mfoot{display:flex;gap:9px;justify-content:flex-end;padding:13px 22px;border-top:1px solid var(--div)}
 .sec-lbl{font-size:9px;font-weight:800;color:var(--pri);text-transform:uppercase;letter-spacing:.08em;padding-bottom:4px;border-bottom:1px solid var(--div);grid-column:1/-1}
-
-/* FORM */
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.fr{grid-template-columns:1fr}}
 .fg{display:flex;flex-direction:column;gap:5px}
@@ -180,7 +200,7 @@ label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;le
 .overdue{color:var(--err)!important;font-weight:800!important}
 
 @media(max-width:768px){
-  .topbar{padding:9px 12px}.tb-div,.tb-chip{display:none}.toolbar{padding:9px 12px}.tw{padding:12px}
+  .topbar{padding:9px 12px}.toolbar{padding:9px 12px}.tw{padding:12px}
   .tbl th:nth-child(5),.tbl td:nth-child(5),.tbl th:nth-child(6),.tbl td:nth-child(6){display:none}
   .dp{width:100%}
 }
@@ -188,106 +208,152 @@ label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;le
 </head>
 <body>
 
-<!-- TOPBAR -->
-<header class="topbar">
-  <a class="logo" href="https://pramukh.academy" target="_blank" rel="noopener">
-    <svg class="logo-icon" viewBox="0 0 34 34" fill="none">
-      <circle cx="17" cy="17" r="16" fill="var(--pri)" opacity=".12" stroke="var(--pri)" stroke-width="1.5"/>
-      <path d="M8 24V11h5a4 4 0 0 1 0 8H8" stroke="var(--pri)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M19.5 17h6M22 14v6" stroke="var(--pri)" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <div>
-      <div class="logo-name">BAPS Pramukh Academy</div>
-      <div class="logo-sub">UPSC · GPSC · Civil Services</div>
+<!-- LOGIN SCREEN -->
+<div class="login-wrap" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg class="login-logo-icon" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="20" fill="#1a4f7a" opacity=".12" stroke="#1a4f7a" stroke-width="1.5"/>
+        <path d="M10 30V14h6a5 5 0 0 1 0 10H10" stroke="#1a4f7a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 21h8M28 17v8" stroke="#1a4f7a" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="login-title">BAPS Pramukh Academy</div>
+        <div class="login-sub">UPSC · GPSC · Civil Services · Inquiry CRM</div>
+      </div>
     </div>
-  </a>
-  <div class="tb-div"></div>
-  <span class="tb-chip">Live CRM</span>
-  <div class="spacer"></div>
-  <button class="icon-btn exp-btn" id="exportBtn" title="Export to Excel">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    Export Excel
-  </button>
-  <button class="icon-btn" id="themeBtn" title="Toggle dark mode">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-  <button class="btn-primary" id="openAdd">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-    New Inquiry
-  </button>
-</header>
-
-<!-- SYNC STATUS -->
-<div class="sync-bar sync-connecting" id="syncBar">
-  <div class="sync-dot"></div>
-  <span id="syncTxt">Connecting to cloud database…</span>
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar" id="statsBar">
-  <div class="stat on" data-f="all"><div class="snum" id="sAll">0</div><div class="slbl">All Inquiries</div></div>
-  <div class="stat" data-f="New"><div class="snum" id="sNew">0</div><div class="slbl"><span class="dot" style="background:var(--blue)"></span>New</div></div>
-  <div class="stat" data-f="Follow-Up"><div class="snum" id="sFollow">0</div><div class="slbl"><span class="dot" style="background:var(--warn)"></span>Follow-Up</div></div>
-  <div class="stat" data-f="Visited"><div class="snum" id="sVisit">0</div><div class="slbl"><span class="dot" style="background:var(--pur)"></span>Visited</div></div>
-  <div class="stat" data-f="Enrolled"><div class="snum" id="sEnroll">0</div><div class="slbl"><span class="dot" style="background:var(--suc)"></span>Enrolled</div></div>
-  <div class="stat" data-f="Not Interested"><div class="snum" id="sNot">0</div><div class="slbl"><span class="dot" style="background:var(--txf)"></span>Not Interested</div></div>
-</div>
-
-<!-- TOOLBAR -->
-<div class="toolbar">
-  <div class="sw">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="search" class="si" id="srch" placeholder="Search name, phone, course…">
+    <div class="login-h">Staff Login</div>
+    <div class="login-desc">Sign in with your staff credentials to access the Inquiry Manager.</div>
+    <div class="lg">
+      <label>Email Address</label>
+      <input class="lgi" id="lEmail" type="email" placeholder="yourname@pramukh.academy" autocomplete="email">
+    </div>
+    <div class="lg">
+      <label>Password</label>
+      <input class="lgi" id="lPass" type="password" placeholder="Enter your password" autocomplete="current-password">
+    </div>
+    <button class="login-btn" id="loginBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+      Sign In
+    </button>
+    <div class="login-err" id="loginErr"></div>
+    <div class="login-note">🔒 Only authorized Pramukh Academy staff can access this system.</div>
   </div>
-  <select class="fsel" id="courseF">
-    <option value="">All Courses</option>
-    <optgroup label="Main Courses">
-      <option>UPSC</option><option>GPSC Class 1-2</option><option>GPSC Class 3</option>
-    </optgroup>
-    <optgroup label="Flagship Programs">
-      <option>Sankalp (School 6–12)</option><option>Sampurna (College)</option>
-    </optgroup>
-    <optgroup label="Events / Programs">
-      <option>Leadership Carnival</option><option>PVC 4.0</option>
-      <option>Sankalp Scholars Quest</option><option>Prasthan 2.0</option>
-    </optgroup>
-    <option>Other</option>
-  </select>
-  <select class="fsel" id="srcF">
-    <option value="">All Sources</option>
-    <option>Walk-In</option><option>Phone Call</option><option>WhatsApp</option>
-    <option>Website</option><option>Reference</option><option>Social Media</option>
-    <option>Event</option><option>YouTube</option>
-  </select>
-  <div class="spacer"></div>
-  <span class="rc" id="rc">Loading…</span>
 </div>
 
-<!-- TABLE -->
-<div class="tw">
-  <div class="loading" id="loadingState">
-    <div class="spinner"></div>
-    <span style="font-size:12px;color:var(--txm)">Loading inquiries from cloud…</span>
-  </div>
-  <table class="tbl" id="mainTable" style="display:none">
-    <thead>
-      <tr>
-        <th>#</th><th>Student</th><th>Phone</th><th>Course / Program</th>
-        <th>Source</th><th>Inquiry Date</th><th>Next Follow-Up</th><th>Status</th><th>Actions</th>
-      </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
-  <div class="es" id="es" style="display:none">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
-    <h3>No inquiries found</h3>
-    <p>Click "New Inquiry" to start tracking, or adjust the filters above.</p>
-    <button class="btn bp" id="esAdd">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+<!-- MAIN APP -->
+<div class="app" id="appScreen">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a class="logo" href="https://pramukh.academy" target="_blank" rel="noopener">
+      <svg class="logo-icon" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="16" fill="var(--pri)" opacity=".12" stroke="var(--pri)" stroke-width="1.5"/>
+        <path d="M8 24V11h5a4 4 0 0 1 0 8H8" stroke="var(--pri)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.5 17h6M22 14v6" stroke="var(--pri)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="logo-name">BAPS Pramukh Academy</div>
+        <div class="logo-sub">UPSC · GPSC · Civil Services</div>
+      </div>
+    </a>
+    <div class="tb-div"></div>
+    <span class="tb-chip">Live CRM</span>
+    <div class="spacer"></div>
+    <div class="user-badge">
+      <div class="user-dot"></div>
+      <span id="userEmail">—</span>
+    </div>
+    <button class="icon-btn exp-btn" id="exportBtn" title="Export to Excel">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export
+    </button>
+    <button class="icon-btn" id="themeBtn" title="Toggle dark mode">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="logout-btn" id="logoutBtn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Logout
+    </button>
+    <button class="btn-primary" id="openAdd">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
       New Inquiry
     </button>
+  </header>
+
+  <!-- SYNC -->
+  <div class="sync-bar sync-connecting" id="syncBar">
+    <div class="sync-dot"></div>
+    <span id="syncTxt">Connecting to cloud database…</span>
   </div>
-</div>
+
+  <!-- STATS -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat on" data-f="all"><div class="snum" id="sAll">0</div><div class="slbl">All</div></div>
+    <div class="stat" data-f="New"><div class="snum" id="sNew">0</div><div class="slbl"><span class="dot" style="background:var(--blue)"></span>New</div></div>
+    <div class="stat" data-f="Follow-Up"><div class="snum" id="sFollow">0</div><div class="slbl"><span class="dot" style="background:var(--warn)"></span>Follow-Up</div></div>
+    <div class="stat" data-f="Visited"><div class="snum" id="sVisit">0</div><div class="slbl"><span class="dot" style="background:var(--pur)"></span>Visited</div></div>
+    <div class="stat" data-f="Enrolled"><div class="snum" id="sEnroll">0</div><div class="slbl"><span class="dot" style="background:var(--suc)"></span>Enrolled</div></div>
+    <div class="stat" data-f="Not Interested"><div class="snum" id="sNot">0</div><div class="slbl">Not Interested</div></div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="sw">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" class="si" id="srch" placeholder="Search name, phone, course…">
+    </div>
+    <select class="fsel" id="courseF">
+      <option value="">All Courses</option>
+      <optgroup label="Main Courses">
+        <option>UPSC</option><option>GPSC Class 1-2</option><option>GPSC Class 3</option>
+      </optgroup>
+      <optgroup label="Flagship Programs">
+        <option>Sankalp (School 6–12)</option><option>Sampurna (College)</option>
+      </optgroup>
+      <optgroup label="Events / Programs">
+        <option>Leadership Carnival</option><option>PVC 4.0</option>
+        <option>Sankalp Scholars Quest</option><option>Prasthan 2.0</option>
+      </optgroup>
+      <option>Other</option>
+    </select>
+    <select class="fsel" id="srcF">
+      <option value="">All Sources</option>
+      <option>Walk-In</option><option>Phone Call</option><option>WhatsApp</option>
+      <option>Website</option><option>Reference</option><option>Social Media</option>
+      <option>Event</option><option>YouTube</option>
+    </select>
+    <div class="spacer"></div>
+    <span class="rc" id="rc">Loading…</span>
+  </div>
+
+  <!-- TABLE -->
+  <div class="tw">
+    <div class="loading" id="loadingState">
+      <div class="spinner"></div>
+      <span style="font-size:12px;color:var(--txm)">Loading inquiries from cloud…</span>
+    </div>
+    <table class="tbl" id="mainTable" style="display:none">
+      <thead>
+        <tr>
+          <th>#</th><th>Student</th><th>Phone</th><th>Course</th>
+          <th>Source</th><th>Date</th><th>Next Follow-Up</th><th>Status</th><th>Added By</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="es" id="es" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+      <h3>No inquiries found</h3>
+      <p>Click "New Inquiry" to start tracking.</p>
+      <button class="btn bp" id="esAdd">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        New Inquiry
+      </button>
+    </div>
+  </div>
+
+</div><!-- end app -->
 
 <!-- DETAIL PANEL -->
 <aside class="dp" id="detPanel">
@@ -350,8 +416,7 @@ label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;le
             <option>Event</option><option>YouTube</option>
           </select>
         </div>
-        <div class="fg"><label>Previous Attempts</label><input id="fATT" class="fi" placeholder="e.g. 2 attempts / First timer"></div>
-        <div class="fg"><label>Preferred Batch</label><input id="fBAT" class="fi" placeholder="e.g. Morning / Evening / Weekend"></div>
+        <div class="fg full"><label>Previous Attempts (UPSC/GPSC)</label><input id="fATT" class="fi" placeholder="e.g. 2 attempts / First timer"></div>
       </div>
       <div class="fr">
         <div class="sec-lbl">Follow-Up & Status</div>
@@ -367,7 +432,7 @@ label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;le
         </div>
         <div class="fg"><label>Next Follow-Up Date</label><input id="fFU" class="fi" type="date"></div>
         <div class="fg full"><label>Notes / Conversation Summary</label>
-          <textarea id="fNO" class="fta" placeholder="Write what was discussed, what they asked, their concerns, next steps…"></textarea>
+          <textarea id="fNO" class="fta" placeholder="Write what was discussed, concerns, next steps…"></textarea>
         </div>
       </div>
     </div>
@@ -383,10 +448,10 @@ label{font-size:9px;font-weight:800;color:var(--txm);text-transform:uppercase;le
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEizerGyxZv7ADs9Fn08UxtOiwAMHrn74",
@@ -400,59 +465,119 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 const colRef = collection(db, "inquiries");
 
-var data = [];
-var eid = null, af = "all", sid = null;
+var data = [], eid = null, af = "all", sid = null, currentUser = null, unsub = null;
 
-// SYNC STATUS
+// ── AUTH STATE ──
+onAuthStateChanged(auth, function(user) {
+  if (user) {
+    currentUser = user;
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("appScreen").classList.add("show");
+    document.getElementById("userEmail").textContent = user.email.split("@")[0];
+    startListening();
+  } else {
+    currentUser = null;
+    document.getElementById("loginScreen").style.display = "flex";
+    document.getElementById("appScreen").classList.remove("show");
+    document.getElementById("detPanel").classList.remove("open");
+    if (unsub) { unsub(); unsub = null; }
+    data = []; render();
+  }
+});
+
+// ── LOGIN ──
+document.getElementById("loginBtn").addEventListener("click", doLogin);
+document.getElementById("lPass").addEventListener("keydown", function(e) { if (e.key === "Enter") doLogin(); });
+document.getElementById("lEmail").addEventListener("keydown", function(e) { if (e.key === "Enter") document.getElementById("lPass").focus(); });
+
+async function doLogin() {
+  var email = document.getElementById("lEmail").value.trim();
+  var pass = document.getElementById("lPass").value;
+  var err = document.getElementById("loginErr");
+  var btn = document.getElementById("loginBtn");
+  if (!email || !pass) { showErr("Please enter email and password."); return; }
+  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite"></div> Signing in…';
+  btn.disabled = true;
+  err.style.display = "none";
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    toast("Welcome back! ✅");
+  } catch(e) {
+    var msg = "Invalid email or password. Please try again.";
+    if (e.code === "auth/user-not-found") msg = "No account found with this email.";
+    if (e.code === "auth/wrong-password") msg = "Incorrect password. Please try again.";
+    if (e.code === "auth/too-many-requests") msg = "Too many attempts. Please wait a few minutes.";
+    if (e.code === "auth/network-request-failed") msg = "Network error. Check your internet connection.";
+    showErr(msg);
+  }
+  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Sign In';
+  btn.disabled = false;
+}
+
+function showErr(msg) {
+  var e = document.getElementById("loginErr");
+  e.textContent = msg; e.style.display = "block";
+}
+
+// ── LOGOUT ──
+document.getElementById("logoutBtn").addEventListener("click", async function() {
+  if (confirm("Are you sure you want to logout?")) { await signOut(auth); toast("Logged out successfully"); }
+});
+
+// ── FIRESTORE LISTENER ──
+function startListening() {
+  setSyncStatus("connecting", "Connecting to cloud database…");
+  var q = query(colRef, orderBy("createdAt", "desc"));
+  unsub = onSnapshot(q, function(snap) {
+    data = [];
+    snap.forEach(function(d) { data.push(Object.assign({ _id: d.id }, d.data())); });
+    setSyncStatus("live", "🟢 Live — " + data.length + " inquiries synced");
+    document.getElementById("loadingState").style.display = "none";
+    document.getElementById("mainTable").style.display = "";
+    render();
+  }, function() {
+    setSyncStatus("error", "⚠️ Connection error");
+    document.getElementById("loadingState").style.display = "none";
+    document.getElementById("mainTable").style.display = "";
+  });
+}
+
 function setSyncStatus(s, msg) {
   var bar = document.getElementById("syncBar");
   bar.className = "sync-bar sync-" + s;
   document.getElementById("syncTxt").textContent = msg;
 }
 
-// REAL-TIME LISTENER
-var q = query(colRef, orderBy("createdAt", "desc"));
-onSnapshot(q, function(snap) {
-  data = [];
-  snap.forEach(function(d) { data.push(Object.assign({ _id: d.id }, d.data())); });
-  setSyncStatus("live", "🟢 Live — " + data.length + " inquiries synced across all devices");
-  document.getElementById("loadingState").style.display = "none";
-  document.getElementById("mainTable").style.display = "";
-  render();
-}, function(err) {
-  setSyncStatus("error", "⚠️ Connection error — check internet");
-  document.getElementById("loadingState").style.display = "none";
-  document.getElementById("mainTable").style.display = "";
-  render();
-});
-
+// ── HELPERS ──
 function badge(s) {
-  var m = { "New": "b-new", "Follow-Up": "b-follow", "Visited": "b-visited", "Enrolled": "b-enrolled", "Not Interested": "b-not" };
-  return '<span class="badge ' + (m[s] || "b-new") + '">' + s + '</span>';
+  var m = { "New":"b-new","Follow-Up":"b-follow","Visited":"b-visited","Enrolled":"b-enrolled","Not Interested":"b-not" };
+  return '<span class="badge '+(m[s]||"b-new")+'">'+s+'</span>';
 }
 function courseBadge(c) {
   if (!c) return "";
   var cls = "cb-other";
-  if (c === "UPSC") cls = "cb-upsc";
-  else if (c === "GPSC Class 1-2") cls = "cb-gpsc1";
-  else if (c === "GPSC Class 3") cls = "cb-gpsc3";
-  else if (c.indexOf("Sankalp") === 0) cls = "cb-sankalp";
-  else if (c.indexOf("Sampurna") === 0) cls = "cb-sampurna";
-  return '<span class="cb ' + cls + '">' + c + '</span>';
+  if (c==="UPSC") cls="cb-upsc";
+  else if (c==="GPSC Class 1-2") cls="cb-gpsc1";
+  else if (c==="GPSC Class 3") cls="cb-gpsc3";
+  else if (c.indexOf("Sankalp")===0) cls="cb-sankalp";
+  else if (c.indexOf("Sampurna")===0) cls="cb-sampurna";
+  return '<span class="cb '+cls+'">'+c+'</span>';
 }
-function fd(d) { if (!d) return "—"; return new Date(d + "T00:00:00").toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }); }
+function fd(d) { if (!d) return "—"; return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}); }
 function ov(d) { if (!d) return false; return new Date(d) < new Date(new Date().toDateString()); }
+function getById(id) { return data.find(function(r){return r._id===id;})||null; }
 
 function getFiltered() {
   var q = document.getElementById("srch").value.toLowerCase();
   var cf = document.getElementById("courseF").value;
   var sf = document.getElementById("srcF").value;
   return data.filter(function(r) {
-    var ms = af === "all" || r.st === af;
-    var mq = !q || (r.sn || "").toLowerCase().indexOf(q) >= 0 || (r.ph || "").indexOf(q) >= 0 || (r.cr || "").toLowerCase().indexOf(q) >= 0 || (r.ci || "").toLowerCase().indexOf(q) >= 0;
-    return ms && mq && (!cf || r.cr === cf) && (!sf || r.src === sf);
+    var ms = af==="all"||r.st===af;
+    var mq = !q||(r.sn||"").toLowerCase().indexOf(q)>=0||(r.ph||"").indexOf(q)>=0||(r.cr||"").toLowerCase().indexOf(q)>=0||(r.ci||"").toLowerCase().indexOf(q)>=0;
+    return ms&&mq&&(!cf||r.cr===cf)&&(!sf||r.src===sf);
   });
 }
 
@@ -461,192 +586,187 @@ function render() {
   var tb = document.getElementById("tbody");
   var es = document.getElementById("es");
   var tbl = document.getElementById("mainTable");
-  document.getElementById("rc").textContent = rows.length + " record" + (rows.length !== 1 ? "s" : "");
+  document.getElementById("rc").textContent = rows.length+" record"+(rows.length!==1?"s":"");
   document.getElementById("sAll").textContent = data.length;
-  document.getElementById("sNew").textContent = data.filter(function(r) { return r.st === "New"; }).length;
-  document.getElementById("sFollow").textContent = data.filter(function(r) { return r.st === "Follow-Up"; }).length;
-  document.getElementById("sVisit").textContent = data.filter(function(r) { return r.st === "Visited"; }).length;
-  document.getElementById("sEnroll").textContent = data.filter(function(r) { return r.st === "Enrolled"; }).length;
-  document.getElementById("sNot").textContent = data.filter(function(r) { return r.st === "Not Interested"; }).length;
-
-  if (!rows.length) { tb.innerHTML = ""; tbl.style.display = "none"; es.style.display = "block"; return; }
-  tbl.style.display = ""; es.style.display = "none";
+  document.getElementById("sNew").textContent = data.filter(function(r){return r.st==="New";}).length;
+  document.getElementById("sFollow").textContent = data.filter(function(r){return r.st==="Follow-Up";}).length;
+  document.getElementById("sVisit").textContent = data.filter(function(r){return r.st==="Visited";}).length;
+  document.getElementById("sEnroll").textContent = data.filter(function(r){return r.st==="Enrolled";}).length;
+  document.getElementById("sNot").textContent = data.filter(function(r){return r.st==="Not Interested";}).length;
+  if (!rows.length) { tb.innerHTML=""; tbl.style.display="none"; es.style.display="block"; return; }
+  tbl.style.display=""; es.style.display="none";
   var html = "";
-  for (var i = 0; i < rows.length; i++) {
+  for (var i=0;i<rows.length;i++) {
     var r = rows[i];
-    var fuc = ov(r.fu) ? ' class="overdue"' : "";
-    html += '<tr data-id="' + r._id + '" class="' + (sid === r._id ? "sel" : "") + '">';
-    html += '<td class="dc">' + (i + 1) + '</td>';
-    html += '<td class="nc">' + (r.sn || "—") + '<small>' + (r.ci || "—") + (r.edu ? " · " + r.edu : "") + '</small></td>';
-    html += '<td style="font-variant-numeric:tabular-nums;font-size:12px">' + (r.ph || "—") + '</td>';
-    html += '<td>' + courseBadge(r.cr || "—") + '</td>';
-    html += '<td class="dc">' + (r.src || "—") + '</td>';
-    html += '<td class="dc">' + fd(r.dt) + '</td>';
-    html += '<td' + fuc + ' style="font-size:11px;color:var(--txm)">' + fd(r.fu) + '</td>';
-    html += '<td>' + badge(r.st) + '</td>';
+    var fuc = ov(r.fu)?' class="overdue"':'';
+    var addedBy = r.addedBy ? r.addedBy.split("@")[0] : "—";
+    html += '<tr data-id="'+r._id+'" class="'+(sid===r._id?"sel":"")+'">';
+    html += '<td class="dc">'+(i+1)+'</td>';
+    html += '<td class="nc">'+(r.sn||"—")+'<small>'+(r.ci||"—")+(r.edu?" · "+r.edu:"")+'</small></td>';
+    html += '<td style="font-size:12px;font-variant-numeric:tabular-nums">'+(r.ph||"—")+'</td>';
+    html += '<td>'+courseBadge(r.cr||"—")+'</td>';
+    html += '<td class="dc">'+(r.src||"—")+'</td>';
+    html += '<td class="dc">'+fd(r.dt)+'</td>';
+    html += '<td'+fuc+' style="font-size:11px;color:var(--txm)">'+fd(r.fu)+'</td>';
+    html += '<td>'+badge(r.st)+'</td>';
+    html += '<td class="dc" style="font-size:10px">'+addedBy+'</td>';
     html += '<td class="ac">';
-    html += '<button class="abtn w" data-wa="' + r._id + '" title="WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.542 5.873L0 24l6.293-1.507A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.214-3.732.894.933-3.613-.235-.374A9.818 9.818 0 1 1 12 21.818z"/></svg></button>';
-    html += '<button class="abtn" data-edit="' + r._id + '" title="Edit"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>';
-    html += '<button class="abtn d" data-del="' + r._id + '" title="Delete"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
+    html += '<button class="abtn w" data-wa="'+r._id+'" title="WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.542 5.873L0 24l6.293-1.507A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.214-3.732.894.933-3.613-.235-.374A9.818 9.818 0 1 1 12 21.818z"/></svg></button>';
+    html += '<button class="abtn" data-edit="'+r._id+'" title="Edit"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>';
+    html += '<button class="abtn d" data-del="'+r._id+'" title="Delete"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
     html += '</td></tr>';
   }
   tb.innerHTML = html;
   tb.querySelectorAll("tr").forEach(function(tr) {
     tr.addEventListener("click", function(e) {
-      var wa = e.target.closest("[data-wa]"); if (wa) { waCall(wa.dataset.wa); return; }
-      var ed = e.target.closest("[data-edit]"); if (ed) { openEdit(ed.dataset.edit); return; }
-      var dl = e.target.closest("[data-del]"); if (dl) { del(dl.dataset.del); return; }
+      var wa=e.target.closest("[data-wa]"); if(wa){waCall(wa.dataset.wa);return;}
+      var ed=e.target.closest("[data-edit]"); if(ed){openEdit(ed.dataset.edit);return;}
+      var dl=e.target.closest("[data-del]"); if(dl){del(dl.dataset.del);return;}
       openDetail(tr.dataset.id);
     });
   });
 }
 
-function getById(id) { return data.find(function(r) { return r._id === id; }) || null; }
-
 function openDetail(id) {
   sid = id;
   var r = getById(id); if (!r) return;
   document.getElementById("dpn").textContent = r.sn;
-  document.getElementById("dpbadge").innerHTML = badge(r.st) + (r.cr ? " " + courseBadge(r.cr) : "");
-  var ph = (r.ph || "").replace(/[^0-9]/g, "");
-  var msg = encodeURIComponent("Namaste " + r.sn + "! This is BAPS Pramukh Academy. We noticed your inquiry regarding " + r.cr + ". We would love to guide you further on your preparation journey. Please let us know a convenient time to connect. Jay Swaminarayan!");
+  document.getElementById("dpbadge").innerHTML = badge(r.st)+(r.cr?" "+courseBadge(r.cr):"");
+  var ph = (r.ph||"").replace(/[^0-9]/g,"");
+  var msg = encodeURIComponent("Namaste "+r.sn+"! This is BAPS Pramukh Academy. We noticed your inquiry regarding "+r.cr+". We would love to guide you further on your preparation journey. Please let us know a convenient time to connect. Jay Swaminarayan!");
   document.getElementById("dpbody").innerHTML =
-    '<div class="dps"><div class="dpt">Contact Details</div>' +
-    '<div class="dpf"><span class="dpfl">Phone</span><span class="dpfv">' + (r.ph || "—") + '</span></div>' +
-    (r.ap ? '<div class="dpf"><span class="dpfl">Alt. Phone</span><span class="dpfv">' + r.ap + '</span></div>' : '') +
-    (r.em ? '<div class="dpf"><span class="dpfl">Email</span><span class="dpfv">' + r.em + '</span></div>' : '') +
-    '<div class="dpf"><span class="dpfl">City</span><span class="dpfv">' + (r.ci || "—") + '</span></div></div>' +
-    '<div class="dps"><div class="dpt">Academic & Course Info</div>' +
-    '<div class="dpf"><span class="dpfl">Course</span><span class="dpfv">' + (r.cr || "—") + '</span></div>' +
-    '<div class="dpf"><span class="dpfl">Education</span><span class="dpfv">' + (r.edu || "—") + '</span></div>' +
-    (r.att ? '<div class="dpf"><span class="dpfl">Attempts</span><span class="dpfv">' + r.att + '</span></div>' : '') +
-    (r.bat ? '<div class="dpf"><span class="dpfl">Batch</span><span class="dpfv">' + r.bat + '</span></div>' : '') +
-    '<div class="dpf"><span class="dpfl">Source</span><span class="dpfv">' + (r.src || "—") + '</span></div></div>' +
-    '<div class="dps"><div class="dpt">Follow-Up</div>' +
-    '<div class="dpf"><span class="dpfl">Inquiry Date</span><span class="dpfv">' + fd(r.dt) + '</span></div>' +
-    '<div class="dpf"><span class="dpfl">Next Follow-Up</span><span class="dpfv" style="' + (ov(r.fu) ? "color:var(--err)" : "") + '">' + fd(r.fu) + '</span></div></div>' +
-    (r.no ? '<div class="dps"><div class="dpt">Notes</div><div class="dpnotes">' + r.no + '</div></div>' : '') +
-    '<div class="dps"><div class="dpt">Quick Action</div>' +
-    '<a href="https://wa.me/91' + ph + '?text=' + msg + '" target="_blank" rel="noopener" class="wa-btn">' +
-    '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.542 5.873L0 24l6.293-1.507A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.214-3.732.894.933-3.613-.235-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>' +
+    '<div class="dps"><div class="dpt">Contact Details</div>'+
+    '<div class="dpf"><span class="dpfl">Phone</span><span class="dpfv">'+(r.ph||"—")+'</span></div>'+
+    (r.ap?'<div class="dpf"><span class="dpfl">Alt. Phone</span><span class="dpfv">'+r.ap+'</span></div>':'')+
+    (r.em?'<div class="dpf"><span class="dpfl">Email</span><span class="dpfv">'+r.em+'</span></div>':'')+
+    '<div class="dpf"><span class="dpfl">City</span><span class="dpfv">'+(r.ci||"—")+'</span></div></div>'+
+    '<div class="dps"><div class="dpt">Academic & Course Info</div>'+
+    '<div class="dpf"><span class="dpfl">Course</span><span class="dpfv">'+(r.cr||"—")+'</span></div>'+
+    '<div class="dpf"><span class="dpfl">Education</span><span class="dpfv">'+(r.edu||"—")+'</span></div>'+
+    (r.att?'<div class="dpf"><span class="dpfl">Attempts</span><span class="dpfv">'+r.att+'</span></div>':'')+
+    '<div class="dpf"><span class="dpfl">Source</span><span class="dpfv">'+(r.src||"—")+'</span></div></div>'+
+    '<div class="dps"><div class="dpt">Follow-Up</div>'+
+    '<div class="dpf"><span class="dpfl">Inquiry Date</span><span class="dpfv">'+fd(r.dt)+'</span></div>'+
+    '<div class="dpf"><span class="dpfl">Next Follow-Up</span><span class="dpfv" style="'+(ov(r.fu)?"color:var(--err)":"")+'">'+fd(r.fu)+'</span></div>'+
+    '<div class="dpf"><span class="dpfl">Added By</span><span class="dpfv">'+(r.addedBy||"—")+'</span></div></div>'+
+    (r.no?'<div class="dps"><div class="dpt">Notes</div><div class="dpnotes">'+r.no+'</div></div>':'')+
+    '<div class="dps"><div class="dpt">Quick Action</div>'+
+    '<a href="https://wa.me/91'+ph+'?text='+msg+'" target="_blank" rel="noopener" class="wa-btn">'+
+    '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.542 5.873L0 24l6.293-1.507A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.214-3.732.894.933-3.613-.235-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>'+
     'Send WhatsApp Follow-Up</a></div>';
-  document.getElementById("dpEdit").onclick = function() { openEdit(id); };
-  document.getElementById("dpDel").onclick = function() { del(id); };
+  document.getElementById("dpEdit").onclick = function(){openEdit(id);};
+  document.getElementById("dpDel").onclick = function(){del(id);};
   document.getElementById("detPanel").classList.add("open");
   render();
 }
 
 function waCall(id) {
   var r = getById(id); if (!r) return;
-  var ph = (r.ph || "").replace(/[^0-9]/g, "");
-  var msg = encodeURIComponent("Namaste " + r.sn + "! This is BAPS Pramukh Academy. We noticed your inquiry regarding " + r.cr + ". We would love to guide you further. Please let us know a convenient time to connect. Jay Swaminarayan!");
-  window.open("https://wa.me/91" + ph + "?text=" + msg, "_blank");
+  var ph = (r.ph||"").replace(/[^0-9]/g,"");
+  var msg = encodeURIComponent("Namaste "+r.sn+"! This is BAPS Pramukh Academy. Your inquiry for "+r.cr+" has been noted. Let us know a convenient time to connect. Jay Swaminarayan!");
+  window.open("https://wa.me/91"+ph+"?text="+msg,"_blank");
 }
 
-document.getElementById("closeDP").addEventListener("click", function() { document.getElementById("detPanel").classList.remove("open"); sid = null; render(); });
+document.getElementById("closeDP").addEventListener("click",function(){document.getElementById("detPanel").classList.remove("open");sid=null;render();});
 
-function openAdd() { eid = null; document.getElementById("mTitle").textContent = "New Inquiry"; clrF(); document.getElementById("addModal").classList.add("open"); setTimeout(function() { document.getElementById("fSN").focus(); }, 60); }
-function setV(id, val) { document.getElementById(id).value = val || ""; }
-
-function openEdit(id) {
-  eid = id;
-  var r = getById(id); if (!r) return;
-  document.getElementById("mTitle").textContent = "Edit Inquiry";
-  setV("fSN", r.sn); setV("fPH", r.ph); setV("fAP", r.ap); setV("fEM", r.em);
-  setV("fCI", r.ci); setV("fEDU", r.edu); setV("fCR", r.cr); setV("fSRC", r.src);
-  setV("fATT", r.att); setV("fBAT", r.bat); setV("fST", r.st); setV("fFU", r.fu); setV("fNO", r.no);
+function openAdd(){eid=null;document.getElementById("mTitle").textContent="New Inquiry";clrF();document.getElementById("addModal").classList.add("open");setTimeout(function(){document.getElementById("fSN").focus();},60);}
+function setV(id,val){document.getElementById(id).value=val||"";}
+function openEdit(id){
+  eid=id;var r=getById(id);if(!r)return;
+  document.getElementById("mTitle").textContent="Edit Inquiry";
+  setV("fSN",r.sn);setV("fPH",r.ph);setV("fAP",r.ap);setV("fEM",r.em);
+  setV("fCI",r.ci);setV("fEDU",r.edu);setV("fCR",r.cr);setV("fSRC",r.src);
+  setV("fATT",r.att);setV("fST",r.st);setV("fFU",r.fu);setV("fNO",r.no);
   document.getElementById("addModal").classList.add("open");
 }
-
-function clrF() {
-  ["fSN","fPH","fAP","fEM","fCI","fEDU","fATT","fBAT","fFU","fNO"].forEach(function(id) { document.getElementById(id).value = ""; });
-  setV("fCR", ""); setV("fSRC", ""); setV("fST", "New");
+function clrF(){
+  ["fSN","fPH","fAP","fEM","fCI","fEDU","fATT","fFU","fNO"].forEach(function(id){document.getElementById(id).value="";});
+  setV("fCR","");setV("fSRC","");setV("fST","New");
 }
-function closeM() { document.getElementById("addModal").classList.remove("open"); }
+function closeM(){document.getElementById("addModal").classList.remove("open");}
 
-document.getElementById("openAdd").addEventListener("click", openAdd);
-document.getElementById("esAdd").addEventListener("click", openAdd);
-document.getElementById("closeM").addEventListener("click", closeM);
-document.getElementById("cancelM").addEventListener("click", closeM);
-document.getElementById("addModal").addEventListener("click", function(e) { if (e.target === e.currentTarget) closeM(); });
+document.getElementById("openAdd").addEventListener("click",openAdd);
+document.getElementById("esAdd").addEventListener("click",openAdd);
+document.getElementById("closeM").addEventListener("click",closeM);
+document.getElementById("cancelM").addEventListener("click",closeM);
+document.getElementById("addModal").addEventListener("click",function(e){if(e.target===e.currentTarget)closeM();});
 
-document.getElementById("saveR").addEventListener("click", async function() {
-  var sn = document.getElementById("fSN").value.trim();
-  var ph = document.getElementById("fPH").value.trim();
-  var cr = document.getElementById("fCR").value;
-  if (!sn) { toast("Please enter student name!"); document.getElementById("fSN").focus(); return; }
-  if (!ph) { toast("Please enter phone number!"); document.getElementById("fPH").focus(); return; }
-  if (!cr) { toast("Please select a course!"); document.getElementById("fCR").focus(); return; }
-  var rec = {
-    sn, ph, ap: document.getElementById("fAP").value.trim(),
-    em: document.getElementById("fEM").value.trim(), ci: document.getElementById("fCI").value.trim(),
-    edu: document.getElementById("fEDU").value.trim(), cr,
-    src: document.getElementById("fSRC").value, att: document.getElementById("fATT").value.trim(),
-    bat: document.getElementById("fBAT").value.trim(), st: document.getElementById("fST").value,
-    fu: document.getElementById("fFU").value, no: document.getElementById("fNO").value.trim(),
-    dt: eid ? (getById(eid) || {}).dt || new Date().toISOString().split("T")[0] : new Date().toISOString().split("T")[0],
-    updatedAt: serverTimestamp()
+document.getElementById("saveR").addEventListener("click", async function(){
+  var sn=document.getElementById("fSN").value.trim();
+  var ph=document.getElementById("fPH").value.trim();
+  var cr=document.getElementById("fCR").value;
+  if(!sn){toast("Please enter student name!");document.getElementById("fSN").focus();return;}
+  if(!ph){toast("Please enter phone number!");document.getElementById("fPH").focus();return;}
+  if(!cr){toast("Please select a course!");document.getElementById("fCR").focus();return;}
+  var rec={
+    sn,ph,ap:document.getElementById("fAP").value.trim(),
+    em:document.getElementById("fEM").value.trim(),ci:document.getElementById("fCI").value.trim(),
+    edu:document.getElementById("fEDU").value.trim(),cr,
+    src:document.getElementById("fSRC").value,att:document.getElementById("fATT").value.trim(),
+    st:document.getElementById("fST").value,fu:document.getElementById("fFU").value,
+    no:document.getElementById("fNO").value.trim(),
+    dt:eid?(getById(eid)||{}).dt||new Date().toISOString().split("T")[0]:new Date().toISOString().split("T")[0],
+    addedBy:eid?(getById(eid)||{}).addedBy||(currentUser?currentUser.email:""):(currentUser?currentUser.email:""),
+    updatedBy:currentUser?currentUser.email:"",
+    updatedAt:serverTimestamp()
   };
-  try {
-    document.getElementById("saveR").textContent = "Saving…";
-    if (eid) { await updateDoc(doc(db, "inquiries", eid), rec); toast("Inquiry updated! ✅"); }
-    else { rec.createdAt = serverTimestamp(); var nd = await addDoc(colRef, rec); sid = nd.id; toast("New inquiry saved! ✅"); }
+  try{
+    document.getElementById("saveR").textContent="Saving…";
+    if(eid){await updateDoc(doc(db,"inquiries",eid),rec);toast("Inquiry updated! ✅");}
+    else{rec.createdAt=serverTimestamp();var nd=await addDoc(colRef,rec);sid=nd.id;toast("New inquiry saved! ✅");}
     closeM();
-  } catch(e) { toast("Error: " + e.message); }
-  document.getElementById("saveR").innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Inquiry';
+  }catch(e){toast("Error: "+e.message);}
+  document.getElementById("saveR").innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Inquiry';
 });
 
-async function del(id) {
-  if (!confirm("Delete this inquiry? This cannot be undone.")) return;
-  try { await deleteDoc(doc(db, "inquiries", id)); if (sid === id) { document.getElementById("detPanel").classList.remove("open"); sid = null; } toast("Inquiry deleted"); }
-  catch(e) { toast("Error: " + e.message); }
+async function del(id){
+  if(!confirm("Delete this inquiry? This cannot be undone."))return;
+  try{await deleteDoc(doc(db,"inquiries",id));if(sid===id){document.getElementById("detPanel").classList.remove("open");sid=null;}toast("Inquiry deleted");}
+  catch(e){toast("Error: "+e.message);}
 }
 
-// EXPORT TO EXCEL
-document.getElementById("exportBtn").addEventListener("click", function() {
-  if (!data.length) { toast("No data to export!"); return; }
-  var rows = [["#","Student Name","Phone","Alt Phone","Email","City","Education","Course","Source","Attempts","Batch","Status","Inquiry Date","Next Follow-Up","Notes"]];
-  data.forEach(function(r, i) {
-    rows.push([i+1, r.sn||"", r.ph||"", r.ap||"", r.em||"", r.ci||"", r.edu||"", r.cr||"", r.src||"", r.att||"", r.bat||"", r.st||"", r.dt||"", r.fu||"", (r.no||"").replace(/\n/g," ")]);
-  });
-  var csv = rows.map(function(r) { return r.map(function(c) { return '"'+String(c).replace(/"/g,'""')+'"'; }).join(","); }).join("\n");
-  var bom = "\uFEFF";
-  var blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
-  var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-  a.download = "PramukhAcademy_Inquiries_" + new Date().toISOString().split("T")[0] + ".csv";
-  a.click(); toast("Exported successfully! ✅");
+// EXPORT
+document.getElementById("exportBtn").addEventListener("click",function(){
+  if(!data.length){toast("No data to export!");return;}
+  var rows=[["#","Student","Phone","Alt Phone","Email","City","Education","Course","Source","Attempts","Status","Inquiry Date","Next Follow-Up","Added By","Notes"]];
+  data.forEach(function(r,i){rows.push([i+1,r.sn||"",r.ph||"",r.ap||"",r.em||"",r.ci||"",r.edu||"",r.cr||"",r.src||"",r.att||"",r.st||"",r.dt||"",r.fu||"",r.addedBy||"",(r.no||"").replace(/\n/g," ")]);});
+  var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(",");}).join("\n");
+  var blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8;"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="PramukhAcademy_Inquiries_"+new Date().toISOString().split("T")[0]+".csv";
+  a.click();toast("Exported successfully! ✅");
 });
 
 // STATS FILTER
-document.getElementById("statsBar").querySelectorAll(".stat").forEach(function(s) {
-  s.addEventListener("click", function() {
-    document.getElementById("statsBar").querySelectorAll(".stat").forEach(function(x) { x.classList.remove("on"); });
-    s.classList.add("on"); af = s.dataset.f; render();
+document.getElementById("statsBar").querySelectorAll(".stat").forEach(function(s){
+  s.addEventListener("click",function(){
+    document.getElementById("statsBar").querySelectorAll(".stat").forEach(function(x){x.classList.remove("on");});
+    s.classList.add("on");af=s.dataset.f;render();
   });
 });
-document.getElementById("srch").addEventListener("input", render);
-document.getElementById("courseF").addEventListener("change", render);
-document.getElementById("srcF").addEventListener("change", render);
+document.getElementById("srch").addEventListener("input",render);
+document.getElementById("courseF").addEventListener("change",render);
+document.getElementById("srcF").addEventListener("change",render);
 
-function toast(msg) { var t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(function() { t.classList.remove("show"); }, 2800); }
+function toast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2800);}
 
 // THEME
-(function() {
-  var btn = document.getElementById("themeBtn"); var root = document.documentElement;
-  var d = window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light";
-  root.setAttribute("data-theme", d);
-  var sun = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-  var moon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-  btn.innerHTML = d === "dark" ? sun : moon;
-  btn.addEventListener("click", function() { d = d === "dark" ? "light" : "dark"; root.setAttribute("data-theme", d); btn.innerHTML = d === "dark" ? sun : moon; });
+(function(){
+  var btn=document.getElementById("themeBtn");var root=document.documentElement;
+  var d=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+  root.setAttribute("data-theme",d);
+  var sun='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  var moon='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  btn.innerHTML=d==="dark"?sun:moon;
+  btn.addEventListener("click",function(){d=d==="dark"?"light":"dark";root.setAttribute("data-theme",d);btn.innerHTML=d==="dark"?sun:moon;});
 })();
 
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    if (document.getElementById("addModal").classList.contains("open")) closeM();
-    else if (document.getElementById("detPanel").classList.contains("open")) { document.getElementById("detPanel").classList.remove("open"); sid = null; render(); }
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){
+    if(document.getElementById("addModal").classList.contains("open"))closeM();
+    else if(document.getElementById("detPanel").classList.contains("open")){document.getElementById("detPanel").classList.remove("open");sid=null;render();}
   }
-  if (e.key === "n" && !e.target.matches("input,textarea,select")) openAdd();
+  if(e.key==="n"&&!e.target.matches("input,textarea,select"))openAdd();
 });
 </script>
 </body>
